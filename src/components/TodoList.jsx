@@ -14,7 +14,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Todo from "./Todo.jsx";
 import Grid from '@mui/material/GridLegacy';
 import TextField from '@mui/material/TextField';
-import {useState,useContext,useEffect} from "react"
+import {useState,useContext,useEffect,useMemo} from "react"
 import {TodosContext} from '../context/todosContext.js';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -27,14 +27,25 @@ export default function TodoList(){
 
 
      // filteration arrays
-    const competedTodos= todos.filter((t)=>{
-      return t.isCompleted
-    })
+
+     
+
+    const competedTodos= useMemo(()=>{
+       return todos.filter((t)=>{
+        console.log("calling completed todos")
+        return t.isCompleted
+       })
+     },[todos])
 
      // filteration arrays
-    const notCompetedTodos= todos.filter((t)=>{
+    const notCompetedTodos=useMemo(()=>{
+      return todos.filter((t)=>{
+      console.log("calling notcompleted todos")
       return !t.isCompleted
     })
+
+    },[todos]) 
+    
 
     let todosTobeRender = todos
 
