@@ -49,7 +49,7 @@ export default function MyTodos() {
 
   return (
     <React.Fragment>
-      <Container maxWidth="md" sx={{width:isMobile?"90%":"auto"}}> 
+      <Container  sx={{width:isMobile?"90%":"auto"}}> 
           <Card sx={{display:"flex" ,alignItems:"center",justifyContent:"center",flexDirection:"column",padding:"10px" }}>
             <Typography variant={isMobile?"h4":"h2"} gutterBottom sx={{fontFamily:isMobile?"400":"800"}}>
               Todo List
