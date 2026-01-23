@@ -14,15 +14,15 @@ import EditIcon from '@mui/icons-material/Edit';
 
 
 
-export default function Todos ({todo}){
+export default function Todos ({todo,isMobile}){
 
     return (
             <Card sx={{ width:"90%" , marginTop:"5px",display:"flex", alignItems:"center", justifyContent:"around", padding:"5px", border:"solid 1px gray"}}>
             <CardContent sx={{display:"flex" , flexDirection:"column" ,justifyContent :"start", alignItems:"start",width:"70%"}} >
-                <Typography variant="h5" sx={{fontWeight:"bold"}}>
+                <Typography variant={isMobile?"h6":"h5"} sx={{fontWeight:"bold"}}>
                     {todo.title}
                 </Typography>
-                <Typography variant="h6">
+                <Typography variant={isMobile?"h6":"h5"}>
                     {todo.description}
                 </Typography>
             </CardContent>

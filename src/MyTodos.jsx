@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
+import {useTheme,useMediaQuery} from "@mui/material"
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -22,12 +23,14 @@ export default function MyTodos() {
   const {todo, setTodo} = useContext(TodoContext)
   const [title , setTitle] = useState("")
   const [description , setDescription] = useState("")
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   //==== state ====//
 
   
 
   let todoJsx = todo.map((item)=>{
-    return <Todos todo = {item} key={item.id}  />
+    return <Todos todo = {item}  isMobile={isMobile}  />
   })
  
 
@@ -46,16 +49,17 @@ export default function MyTodos() {
 
   return (
     <React.Fragment>
-      <Container maxWidth="md">
-          <Card sx={{ minWidth: 500,display:"flex" ,alignItems:"center",justifyContent:"center",flexDirection:"column",padding:"10px" }}>
-            <Typography variant="h2" gutterBottom>
+      <Container maxWidth="md" sx={{width:isMobile?"90%":"auto"}}> 
+          <Card sx={{display:"flex" ,alignItems:"center",justifyContent:"center",flexDirection:"column",padding:"10px" }}>
+            <Typography variant={isMobile?"h4":"h2"} gutterBottom sx={{fontFamily:isMobile?"400":"800"}}>
               Todo List
             </Typography>
             <CardContent style={{display:"flex",justifyContent:"center",alignItems:"center",padding:"10px"}}>
 
               {/* input filed and add button */}
               <TextField
-               style={{margin:"10px"}} 
+               style={{margin:"10px" }} 
+               size={isMobile?'small':'medium'}
                label="Title" 
                variant="outlined"
                onChange={(e)=>{
@@ -68,6 +72,7 @@ export default function MyTodos() {
 
              <TextField
                style={{margin:"10px"}} 
+               size={isMobile?'small':'medium'}
                label="Description" 
                variant="outlined"
                onChange={(e)=>{
@@ -78,7 +83,7 @@ export default function MyTodos() {
                value={description}
                 /> 
 
-              <Button onClick={addButton} style={{margin:"5px",height:"45px"}} variant="contained">Add</Button>
+              <Button onClick={addButton} style={{margin:"5px",height:isMobile?"30px":"45px"}}  variant="contained">Add</Button>
               {/*==== input filed and add button ====*/}
 
             </CardContent>
