@@ -53,16 +53,16 @@ let todoJsx = todos.map((item)=>{
 
   return (
     <React.Fragment>
-      <Container maxWidth="md" disableGutters sx={{width:{xs:"100%", sm:"100%", mx:"auto"}}}> 
-          <Card sx={{display:"flex" ,alignItems:"center",justifyContent:"center",flexDirection:"column",paddingBottom:"30px" }}>
+      <Container maxWidth="md" disableGutters sx={{width:{xs:"90vw", sm:"100%", mx:"auto"}}}> 
+          <Card sx={{display:"flex" ,alignItems:"center",justifyContent:"center",flexDirection:"column",padding:"30px" }}>
             <Typography variant={isMobile?"h4":"h2"} gutterBottom sx={{fontFamily:isMobile?"400":"800"}}>
               Todo List
             </Typography>
-            <CardContent style={{display:"flex",justifyContent:"center",alignItems:"center",padding:"10px" , flexDirection:isMobile?"column":"row"}}>
+            <CardContent style={{display:"flex",justifyContent:"center",alignItems:"center",padding:"10px" , flexDirection:isMobile?"column":"row",width:isMobile?"90%":"auto"}}>
 
               {/* input filed and add button */}
               <TextField
-               style={{margin:"10px" }} 
+               style={{margin:"10px", width:isMobile?"90%":"auto" }} 
                size={isMobile?'small':'medium'}
                label="Title" 
                variant="outlined"
@@ -75,7 +75,7 @@ let todoJsx = todos.map((item)=>{
                 /> 
 
              <TextField
-               style={{margin:"10px"}} 
+               style={{margin:"10px",width:isMobile?"90%":"auto"}} 
                size={isMobile?'small':'medium'}
                label="Description" 
                variant="outlined"
