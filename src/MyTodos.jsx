@@ -20,30 +20,34 @@ export default function MyTodos() {
    
 
   // state
-  const {todo, setTodo} = useContext(TodoContext)
+  const {todos, setTodos} = useContext(TodoContext)
   const [title , setTitle] = useState("")
   const [description , setDescription] = useState("")
+  const [checked , setChecked] = useState(false)
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   //==== state ====//
 
   
 
-  let todoJsx = todo.map((item)=>{
-    return <Todos todo = {item}  isMobile={isMobile}  />
-  })
- 
+  
+
+  
 
 
 // function of add todos
   function addButton (){
-    setTodo([
-      ...todo,{id:uuidv4(),title,description}
+    setTodos([
+      ...todos,{id:uuidv4(),title,description,isChecked:false}
     ])
     setTitle("")
     setDescription("")
   }
 //==== function of add todos===//
+
+let todoJsx = todos.map((item)=>{
+    return <Todos todo ={item}  isMobile={isMobile} key={item.id }/>
+  })
 
 
 
@@ -54,7 +58,7 @@ export default function MyTodos() {
             <Typography variant={isMobile?"h4":"h2"} gutterBottom sx={{fontFamily:isMobile?"400":"800"}}>
               Todo List
             </Typography>
-            <CardContent style={{display:"flex",justifyContent:"center",alignItems:"center",padding:"10px"}}>
+            <CardContent style={{display:"flex",justifyContent:"center",alignItems:"center",padding:"10px" , flexDirection:isMobile?"column":"row"}}>
 
               {/* input filed and add button */}
               <TextField

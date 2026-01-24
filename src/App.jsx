@@ -6,20 +6,20 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 function App() {
-  const [todo , setTodo] = useState(()=>{
+  const [todos , setTodos] = useState(()=>{
     const saved = localStorage.getItem("todo")
     return saved ? JSON.parse(saved):[];
   })
 
   useEffect(()=>{
-    localStorage.setItem("todo",JSON.stringify(todo))
-  },[todo])
+    localStorage.setItem("todo",JSON.stringify(todos))
+  },[todos])
 
   
 
   return (
     <>
-    <TodoContext.Provider value={{todo , setTodo }}>
+    <TodoContext.Provider value={{todos , setTodos }}>
       <MyTodos/>
     </TodoContext.Provider>
     </>
