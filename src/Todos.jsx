@@ -32,7 +32,7 @@ export default function Todos ({todo,isMobile}){
     const [open, setOpen] = useState(false)
     const [showUpdateDialog,setShowUpdateDialog] = useState(false)
     
-
+    //  HANDLE CHECKED
     function handleCheckClick(){
         const updatedTodos =todos.map((t)=>{
         if(t.id ==todo.id){
@@ -45,6 +45,7 @@ export default function Todos ({todo,isMobile}){
       })
       setTodos(updatedTodos)
     }
+    //  HANDLE CHECKED
 
     // HANDLE EDIT
 

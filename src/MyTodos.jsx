@@ -54,7 +54,7 @@ let todoJsx = todos.map((item)=>{
   return (
     <React.Fragment>
       <Container maxWidth="md" disableGutters sx={{width:{xs:"100%", sm:"100%", mx:"auto"}}}> 
-          <Card sx={{display:"flex" ,alignItems:"center",justifyContent:"center",flexDirection:"column",padding:"10px" }}>
+          <Card sx={{display:"flex" ,alignItems:"center",justifyContent:"center",flexDirection:"column",paddingBottom:"30px" }}>
             <Typography variant={isMobile?"h4":"h2"} gutterBottom sx={{fontFamily:isMobile?"400":"800"}}>
               Todo List
             </Typography>
