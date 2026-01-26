@@ -24,7 +24,7 @@ import TextField from "@mui/material/TextField";
 
 export default function Todos ({todo,isMobile}){
 
-    const {todos, setTodos} = useContext(TodoContext)
+    const {todos, dispatch} = useContext(TodoContext)
     const [updatedTodo, setUpdatedTodo] = useState({
     title: todo.title,
     description: todo.description,
@@ -34,34 +34,28 @@ export default function Todos ({todo,isMobile}){
     
     //  HANDLE CHECKED
     function handleCheckClick(){
-        const updatedTodos =todos.map((t)=>{
-        if(t.id ==todo.id){
-          t.isChecked =! t.isChecked
-          
-        }
-        console.log(t.isChecked)
-        return t;
-        
-      })
-      setTodos(updatedTodos)
+
+        dispatch({
+            type:"Checked",
+            payload :todo.id
+        })
     }
-    //  HANDLE CHECKED
+    //==== HANDLE CHECKED===//
 
     // HANDLE EDIT
 
     function handleUpdate(){
          setShowUpdateDialog(prev=>!prev)
     }
-    
     function handleUpdateConfirm(){
-       const updatedTodos = todos.map((t)=>{
-            if(t.id === todo.id){
-                return { ...t, title: updatedTodo.title, description: updatedTodo.description };
-            } else {
-              return t;
-             }    
+         dispatch({
+            type:"update",
+            payload :{
+                id:todo.id,
+                updatedTodo:updatedTodo
+
+            }
          })
-         setTodos(updatedTodos);
          setShowUpdateDialog(false);
     }
      //==== HANDLE EDIT====//
@@ -73,19 +67,15 @@ export default function Todos ({todo,isMobile}){
     }
 
     function handleDeleteConfirm(){
+        dispatch({
+            type:"delete",
+            payload:todo.id
+        })
 
-           const updatedTodos = todos.filter((t)=> {
-                return t.id != todo.id;
-            });
-        setTodos(updatedTodos);
-        localStorage.setItem("todos", JSON.stringify(updatedTodos));
         setOpen(prev=>!prev)
     }
    //==== HANDLE DELETE ====//
     
-
-
-
     return (
             
             <Card sx={{ width:"90%" , marginTop:"5px",display:"flex", alignItems:"center", justifyContent:"around", padding:"5px", border:"solid 1px gray",flexDirection:isMobile?"column":"row"}}>

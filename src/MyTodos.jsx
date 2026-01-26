@@ -20,7 +20,7 @@ export default function MyTodos() {
    
 
   // state
-  const {todos, setTodos} = useContext(TodoContext)
+  const {todos, dispatch} = useContext(TodoContext)
   const [title , setTitle] = useState("")
   const [description , setDescription] = useState("")
   const [checked , setChecked] = useState(false)
@@ -37,17 +37,21 @@ export default function MyTodos() {
 
 // function of add todos
   function addButton (){
-    setTodos([
-      ...todos,{id:uuidv4(),title,description,isChecked:false}
-    ])
+    const newTodo = {id:uuidv4(),title,description,isChecked:false}
+    dispatch({
+      type:"Add",
+      payload:newTodo
+    })
     setTitle("")
     setDescription("")
   }
 //==== function of add todos===//
 
-let todoJsx = todos.map((item)=>{
-    return <Todos todo ={item}  isMobile={isMobile} key={item.id }/>
-  })
+let todoJsx =todos?.length>0 
+  ? todos.map(item=>(
+     <Todos todo ={item}  isMobile={isMobile} key={item.id }/>
+  ))
+  : null
 
 
 
